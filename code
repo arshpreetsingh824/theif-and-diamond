@@ -1,0 +1,68 @@
+var theif = createSprite(0,400,10,10);
+var wall = createSprite(200,50 ,300,10);
+var wall3 = createSprite(150,350,300,10);
+var dimond = createSprite(390,10,10,10);
+
+theif.velocityY =0;
+theif.velocityX =0;
+wall3.velocityX =5;
+wall.velocityX =7;
+wall3.shapeColor="red"
+wall.shapeColor="red"
+dimond.shapeColor="blue"
+
+
+
+function draw() {
+  
+  
+  background("white");
+  createEdgeSprites();
+  theif.bounceOff(edges);
+  wall.bounceOff(edges);
+  wall3.bounceOff(edges);
+  
+  if(keyDown("up")){
+      theif.velocityX = 0;
+      theif.velocityY = -2;
+    }
+    
+    if(keyDown("down")){
+      theif.velocityX = 0;
+      theif.velocityY = 2;
+    }
+    
+    if(keyDown("left")){
+      theif.velocityX = -2;
+      theif.velocityY = 0;
+    }
+    
+    if(keyDown("right")){
+    theif.velocityX = 2;
+    theif.velocityY = 0;
+    }
+  
+  if(theif.isTouching(wall) || theif.isTouching(wall3) ){
+      stroke(0)
+      fill(0)
+     theif.pause();
+     theif.velocityX =0;
+     theif.velocityY = 0;
+     text("theif is caught ",200,200);
+     wall3.velocityX =0;
+     wall.velocityX =0;
+  }
+  if(theif.isTouching(dimond) ){
+      stroke(0)
+      fill(0)
+     theif.pause();
+     theif.velocityX =0;
+     theif.velocityY = 0;
+     text("huh! you caught it ",200,200);
+     wall3.velocityX =0;
+     wall.velocityX =0;
+       
+  }
+  
+  drawSprites();
+}
